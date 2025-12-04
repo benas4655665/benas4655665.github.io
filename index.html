@@ -1,10 +1,11 @@
-<!-- Benas Kastenskas, EEF-24 --><!-- Benas Kastenskas, EEF-24 -->
+<!-- Benas Kastenskas, EEF-24 -->
 <!DOCTYPE HTML>
 <!--
 	Ethereal by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+	
 <html lang="lt">
 	<head>
 		<title>Mano CV</title>
@@ -13,6 +14,8 @@
 		<meta name="description" content="Benas Kastenskas CV puslapis.">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css">
+
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -93,46 +96,102 @@ Esu atkaklus, smalsus ir greitai prisitaikantis žmogus, visada siekiantis tapti
 
 
 
-						<!-- Services (Paslaugos) -->
-							<section class="panel color2" id="services">
-  								<div class="intro">
-    							<h2 class="major">Paslaugos</h2>
-    							<p>Žemiau pateikiu mano sukurtus medijos failus – vaizdo įrašą, įterptą YouTube video ir garso įrašą.</p>
-  							</div>
+<!-- Services (Paslaugos) -->
+<section class="panel color2" id="services">
+  <div class="intro">
+    <h2 class="major">Paslaugos</h2>
+    <p>Žemiau pateikiu mano sukurtus medijos failus – vaizdo įrašą, įterptą YouTube video ir garso įrašą.</p>
+  </div>
 
-  							<div class="inner">
+  <div class="inner">
 
-   							<!-- 1. Video failas -->
-   							 <section>
-      							<h3>Vaizdo įrašas</h3>
-     							<video controls width="400">
-        							<source src="assets/media/video1.mp4" type="video/mp4">
-       								Jūsų naršyklė nepalaiko video.
-      							</video>
-    						</section>
+    <!-- 1. Video failas (vietinis mp4) -->
+    <section>
+      <h3>Vaizdo įrašas</h3>
+      <video controls width="400">
+        <source src="assets/media/video1.mp4" type="video/mp4">
+        Jūsų naršyklė nepalaiko video.
+      </video>
+    </section>
 
-    						<!-- 2. YouTube video (embed) -->
-   							<section>
-     							<h3>YouTube įrašas</h3>
-      							<iframe width="400" height="225"
-        							src="https://www.youtube.com/embed/BoUVIhtqjAw"
-        							title="YouTube video"
-									frameborder="0"
-									allowfullscreen>
-      							</iframe>
-    						</section>
+    <!-- 2. YouTube video (embed) -->
+    <section>
+      <h3>YouTube įrašas</h3>
+      <iframe 
+        width="400" 
+        height="225"
+        src="https://www.youtube.com/embed/BoUVIhtqjAW"
+        style="border: none;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </section>
 
-    						<!-- 3. Audio įrašas -->
-    						<section>
-      							<h3>Garso įrašas</h3>
-     							<audio controls>
-        							<source src="assets/media/audio1.mp3" type="audio/mpeg">
-        							Jūsų naršyklė nepalaiko audio.
-     							</audio>
-    						</section>
+    <!-- 3. Audio įrašas -->
+    <section>
+      <h3>Garso įrašas</h3>
+      <audio controls>
+        <source src="assets/media/audio1.mp3" type="audio/mpeg">
+        Jūsų naršyklė nepalaiko audio.
+      </audio>
+    </section>
 
- 						</div>
-					</section>
+    <!-- Paslaugų lentelė -->
+    <h3>Teikiamos paslaugos</h3>
+
+    <table class="services-table">
+      <thead>
+        <tr>
+          <th>Paslauga</th>
+          <th>Aprašymas</th>
+          <th>Kaina</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tinklalapių kūrimas</td>
+          <td>Asmeninės svetainės dizainas ir kodavimas</td>
+          <td>100 €</td>
+        </tr>
+        <tr>
+          <td>MATLAB grafikai</td>
+          <td>Duomenų analizė ir vizualizacijos</td>
+          <td>80 €</td>
+        </tr>
+        <tr>
+          <td>Python projektai</td>
+          <td>Automatizavimas ir duomenų apdorojimas</td>
+          <td>120 €</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Papildoma užduotis 1: numeruotas + nenumeruotas + sąrašas sąraše -->
+
+    <!-- NUMERUOTAS sąrašas su įdėtu sąrašu (nested list) -->
+    <ol class="custom-counter">
+      <li>Programavimas</li>
+
+      <li>Duomenų analizė
+        <ul class="custom-list">
+          <li>MATLAB grafikai</li>
+          <li>Python projektai</li>
+        </ul>
+      </li>
+
+      <li>Treniruočių stebėjimas</li>
+    </ol>
+
+    <!-- NENUMERUOTAS sąrašas -->
+    <ul class="custom-list">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+
+  </div>
+</section>
+
 
 
 
