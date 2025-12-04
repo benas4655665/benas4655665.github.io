@@ -1,0 +1,214 @@
+
+body {
+    font-family: "Verdana", Arial, sans-serif;
+}
+/*antras punktas*/
+/* Pagrindinė didelė antraštė */
+h1.major {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  color: #afe7f8;   
+}
+
+/* Antro lygio antraštės */
+h2.major {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  color: #aa94f8;
+}
+
+/* Trečio lygio antraštės */
+h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #93e5e0;
+}
+
+/* Likusios antraštės */
+h4, h5, h6 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #00ff55;
+}
+
+/* Paprastas tekstas */
+p {
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+  color: #f4d0f7;   
+}
+
+
+/*trecias punktas (mygtukai*/
+
+
+
+
+/*  MYGTUKAI – NORMAL / HOVER / ACTIVE  */
+
+
+/*PAGRINDINIS MYGTUKO STILIUS*/
+a.button,
+input[type="submit"] {
+    background-color: #b8b0f1 !important;  /* MĖLYNAS MYGTUKO FONAS */
+    color: white !important;               /* Tekstas baltas */
+    border-radius: 30px;                   /* Suapvalinti kampai */
+}
+
+
+/* Užvedus pelę – HOVER */
+.actions a.button:hover,
+a.button:hover,
+input[type="submit"]:hover,
+button:hover {
+  background-color: #897de6 !important;  /* naujas fonas */
+  color: #000000 !important;             /* baltas tekstas */
+  transform: translateY(-2px);
+  box-shadow: 0 0.4em 0.6em rgba(0, 0, 0, 0.25);
+}
+
+/* ======== ACTIVE ======== */
+a.button:active,
+input[type="submit"]:active {
+    background-color: #5e4ce4 !important;  /* dar tamsesnė mėlyna */
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+
+
+
+/*  NUORODOS (3b punktas)   */
+
+/* Paprasta nuoroda */
+a {
+  color: #9cc0ec;                 /* šviesiai mėlyna */
+  text-decoration: none;          /* panaikinam pabraukimą */
+  border-bottom: 1px dashed rgba(143, 214, 255, 0.7);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Užvedus pelę ant nuorodos */
+a:hover {
+  color: #478bde;
+  border-bottom-color: #478bde;
+}
+
+/* Paspaudimo momentas */
+a:active {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+
+
+/*ketvirtas punktas*/
+
+section {
+    padding: 5px 0;     /* viršus/apačia */
+}
+
+section {
+    border-radius: 12px;
+}
+
+section {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+
+/*penktas punktas, jau atlikau 3-ioje uzduotyje*/
+
+
+/* 6 punktas - PASLAUGŲ sekcijai – toks pats švelniai rožinis fonas */
+#services,
+.services,
+section[id*="services"],
+section.services-section {
+    background: linear-gradient(135deg, #d1c56e, #eb3168) !important;
+}
+
+
+/* Pakeičiam "Išsilavinimas, darbo patirtis" sekcijos foną */
+.panel.color1,
+.panel.color1 .intro,
+.panel.color1 .inner {
+    background: linear-gradient(135deg, #6b16957a, #6108773d) !important;
+}
+
+
+/*papildoma uzduotis1*/
+
+/* Numeruoto sąrašo stilius */
+.custom-counter li::marker {
+  color: #ff7bbd;
+  font-weight: bold;
+}
+
+/* Nenumeruoto sąrašo stilius */
+.custom-list > li {
+  margin-bottom: 6px;
+}
+
+.custom-list li::before {
+  content: "◆";
+  color: #ff9ad6;
+  margin-right: 8px;
+}
+
+.custom-list ul li::before {
+  content: "•";
+  color: #d18eff;
+}
+
+
+/*papildoma uzduotis2 - paslaugu lentele*/
+
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+/* Antraštinė eilutė – išskiriame spalva ir stiliumi */
+.services-table thead tr {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Bendras langelių padding'as ir rėmeliai */
+.services-table th,
+.services-table td {
+  padding: 10px 14px;      /* čia yra cell padding */
+  text-align: left;
+}
+
+/* Kainos stulpelį galima centruoti */
+.services-table td:last-child,
+.services-table th:last-child {
+  text-align: center;
+}
+
+/* Zebra – kas antra eilutė kitokio fono */
+.services-table tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.services-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* Hover efektas, kai užvedi pelę ant eilutės */
+.services-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+
