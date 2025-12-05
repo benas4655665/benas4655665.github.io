@@ -44,9 +44,7 @@ p {
 }
 
 
-/*trecias punktas (mygtukai*/
-
-
+/*trecias punktas (mygtukai)*/
 
 
 /*  MYGTUKAI – NORMAL / HOVER / ACTIVE  */
@@ -125,21 +123,44 @@ section {
 /*penktas punktas, jau atlikau 3-ioje uzduotyje*/
 
 
-/* 6 punktas - PASLAUGŲ sekcijai – toks pats švelniai rožinis fonas */
-#services,
-.services,
-section[id*="services"],
-section.services-section {
-    background: linear-gradient(135deg, #d1c56e, #eb3168) !important;
+/* 6 punktas + PAPILDOMA UŽDUOTIS – animuotas gradientinis fonas PASLAUGŲ sekcijai */
+
+/* Gradiento judėjimo animacija */
+@keyframes servicesGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Pritaikome specialų foną tik PASLAUGŲ sekcijai */
+.panel.color2#services {
+  position: relative;                  /* kad fonas elgtųsi tvarkingai */
+  overflow: hidden;
+  
+  background-image: linear-gradient(
+    120deg,
+    #ff9a9d43,
+    #fad0c427,
+    #fbc2eb66,
+    #a6c0eeaf
+  );
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+
+  /* DVI animacijos vienu metu:
+     1) fadeIn (pirmos užduoties efektas)
+     2) servicesGradient – fonas keičiasi kas 2.5 s */
+  animation: fadeIn 1.2s ease-out, servicesGradient 2.5s ease-in-out infinite;
+}
+
+/* Kad vidiniai blokai neuždengtų gradiento */
+.panel.color2#services .intro,
+.panel.color2#services .inner {
+  background: transparent;
 }
 
 
-/* Pakeičiam "Išsilavinimas, darbo patirtis" sekcijos foną */
-.panel.color1,
-.panel.color1 .intro,
-.panel.color1 .inner {
-    background: linear-gradient(135deg, #6b16957a, #6108773d) !important;
-}
+
 
 
 /*papildoma uzduotis1*/
@@ -211,4 +232,210 @@ section.services-section {
   background: rgba(255, 255, 255, 0.18);
 }
 
+
+
+
+/*10 LABORATORINIS DARBAS*/
+
+
+
+/*Uzduotis 1*/
+/* Fade-in animacija */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Visos sekcijos atsiras lėtai */
+section {
+    animation: fadeIn 1.2s ease-out;
+}
+
+
+@keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+
+/* Socialinių ikonų animacija */
+.contact-icons li {
+    animation: float 2.5s ease-in-out infinite;
+}
+
+
+
+
+
+/*Uzduotis 2, svetaines uzkrovimas*/
+
+/*     page preloader    */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #74e9d5, #eb3168);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Sukasi ratas */
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Sukimosi animacija */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Preloaderio išnykimas */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+}
+
+
+
+
+
+/*Uzduotis 3, zmones, kurie nusistate reduced motion (jautresniems vartotojams)*/
+
+/* 10.3 – jei vartotojas prašo mažiau animacijų */
+
+
+
+
+
+
+
+
+
+
+/*4 uzudotis, pataiseme (svetaine atrodo graziai ir tvarkingai)*/
+
+
+/* 10 laboratorinis – 2 užduotis: CSS figūros "Apie" sekcijoje */
+
+/* Apie sekcijos (id="first") konteineris – kad figūros būtų virš jo */
+#first {
+  position: relative;
+  overflow: hidden;   /* kad figūros neišliptų už sekcijos ribų */
+}
+
+/* Bendras figūrų konteineris */
+.about-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* kad "neužmuštų" mygtukų / nuorodų */
+}
+
+/* Bendri figūrų parametrai */
+.about-shapes .shape {
+  position: absolute;
+  opacity: 0.75;
+}
+
+/* ===== 1. Apskritimas – ROTATING ===== */
+.about-shapes .circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #ff9ad6;
+  top: 10%;
+  right: 8%;
+  animation: shapeRotate 8s linear infinite;
+}
+
+/* ===== 2. Kvadratas – SCALING (pulsuoja) ===== */
+.about-shapes .square {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  border: 3px solid #93e5e0;
+  bottom: 10%;
+  right: 8%;
+  animation: shapePulse 4s ease-in-out infinite;
+}
+
+/* ===== 3. Trikampis – FLOATING (plūduriuoja) ===== */
+.about-shapes .triangle {
+  width: 0;
+  height: 0;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 60px solid #aa94f8;
+  top: 45%;
+  right: 8%;
+  animation: shapeFloat 5s ease-in-out infinite;
+}
+
+/* --- Animacijų aprašymai --- */
+
+/* Rotating */
+@keyframes shapeRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Scaling */
+@keyframes shapePulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Floating – judėjimas įvairiomis kryptimis */
+@keyframes shapeFloat {
+  0%   { transform: translate(-10px, 0); }
+  50%  { transform: translate(12px, -18px); }
+  100% { transform: translate(-10px, 0); }
+}
+
+
+
+/*sutvarkome paslaugu skilti*/
+/* PASLAUGŲ SEKCIJA – kad viskas būtų matoma ir tvarkingai išdėstyta */
+#services .inner {
+  display: flex;
+  flex-direction: column;   /* viskas viena po kito žemyn */
+  gap: 1.5rem;              /* tarpai tarp blokų */
+  margin-top: 1.5rem;       /* kad media nebūtų prilipę prie viršaus */
+}
+
+/* Vidiniai <section> Paslaugų sekcijoje – nuimam bendrą šešėlį / radius */
+#services .inner > section {
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+}
+/* Kad medijos elementai būtų pilnai matomi ir prisitaikytų prie pločio */
+#services video,
+#services iframe,
+#services audio {
+  display: block;
+  width: 100%;        /* prisitaiko prie tėvinio bloko */
+  max-width: 480px;   /* kad nebūtų per platūs dideliuose ekranuose */
+  margin: 0 0 1rem 0;
+}
 
