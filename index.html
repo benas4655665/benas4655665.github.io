@@ -19,6 +19,7 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
+	
 
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
@@ -54,7 +55,15 @@ Esu atkaklus, smalsus ir greitai prisitaikantis žmogus, visada siekiantis tapti
 								<div class="image filtered tinted" data-position="top left">
 									<img src="assets/img/benas.png" alt="Benas Kastenskas">
 								</div>
+
+ 							<!-- 10 laboratorinis – 2 užduotis: CSS figūros Apie sekcijoje -->
+  								<div class="about-shapes">
+    								<span class="shape circle"></span>
+   									<span class="shape square"></span>
+    								<span class="shape triangle"></span>
+  								</div>
 							</section>
+						
 
 						<!-- Panel -->
 							<section class="panel color1">
@@ -109,8 +118,7 @@ Esu atkaklus, smalsus ir greitai prisitaikantis žmogus, visada siekiantis tapti
     <section>
       <h3>Vaizdo įrašas</h3>
       <video controls width="400">
-        <source src="assets/media/video1.mp4" type="video/mp4">
-        Jūsų naršyklė nepalaiko video.
+        <source src="assets/media/video1.mp4" type="video/mp4">						
       </video>
     </section>
 
@@ -120,7 +128,7 @@ Esu atkaklus, smalsus ir greitai prisitaikantis žmogus, visada siekiantis tapti
       <iframe 
         width="400" 
         height="225"
-        src="https://www.youtube.com/embed/BoUVIhtqjAW"
+        src="https://www.youtube.com/embed/BoUVIhtqjAw?si=LPhd9ik62cX7NnZG"
         style="border: none;"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
@@ -228,10 +236,10 @@ Atsakysiu į tavo laišką, kai tik galėsiu, ir, jei bus galimybė, mielai pris
 									<div class="span-1-5">
 										<ul class="contact-icons color1">
 											<li class="icon brands fa-twitter"><a href="#">@benas.kastenskas</a></li>
-											<li class="icon brands fa-facebook-f"><a href="#">facebook.com/b_kastenskas</a></li>
+											<li class="icon brands fa-facebook-f"><a href="#">facebook.com/b_kas</a></li>
 											<li class="icon brands fa-snapchat-ghost"><a href="#">@benas_kastenskas</a></li>
 											<li class="icon brands fa-instagram"><a href="#">@benas_kastenskas</a></li>
-											<li class="icon brands fa-medium-m"><a href="#">medium.com/b_kastenskas</a></li>
+											<li class="icon brands fa-medium-m"><a href="#">medium.com/b_kas</a></li>
 										</ul>
 									</div>
 								</div>
@@ -252,5 +260,28 @@ Atsakysiu į tavo laišką, kai tik galėsiu, ir, jei bus galimybė, mielai pris
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/main.js"></script>
 
+
+	<!-- 10.2 laboratorinio. Šis kodas paslepia preloaderį, kai svetainė pilnai užsikrauna -->
+	<script>
+  		window.addEventListener('load', function () {
+    		const loader = document.getElementById('preloader');
+
+    		if (!loader) return; // jei dėl kokios nors priežasties jo nėra
+
+    		loader.classList.add('fade-out');
+
+    		setTimeout(() => {
+      			loader.style.display = 'none';
+    		}, 700);
+  		  });
+	</script>
+<!-- 10.2 laboratorinio-->
+	<!-- Preloader -->
+	<div id="preloader">
+    	<div class="spinner"></div>
+	</div>
+
 	</body>
+	
+
 </html>
