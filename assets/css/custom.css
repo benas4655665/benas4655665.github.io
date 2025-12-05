@@ -414,28 +414,4 @@ section {
 
 
 
-/*sutvarkome paslaugu skilti*/
-/* PASLAUGŲ SEKCIJA – kad viskas būtų matoma ir tvarkingai išdėstyta */
-#services .inner {
-  display: flex;
-  flex-direction: column;   /* viskas viena po kito žemyn */
-  gap: 1.5rem;              /* tarpai tarp blokų */
-  margin-top: 1.5rem;       /* kad media nebūtų prilipę prie viršaus */
-}
-
-/* Vidiniai <section> Paslaugų sekcijoje – nuimam bendrą šešėlį / radius */
-#services .inner > section {
-  box-shadow: none;
-  border-radius: 0;
-  padding: 0;
-}
-/* Kad medijos elementai būtų pilnai matomi ir prisitaikytų prie pločio */
-#services video,
-#services iframe,
-#services audio {
-  display: block;
-  width: 100%;        /* prisitaiko prie tėvinio bloko */
-  max-width: 480px;   /* kad nebūtų per platūs dideliuose ekranuose */
-  margin: 0 0 1rem 0;
-}
 
