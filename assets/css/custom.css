@@ -1,4 +1,3 @@
-
 body {
     font-family: "Verdana", Arial, sans-serif;
 }
@@ -413,5 +412,162 @@ section {
 }
 
 
+/*11 laboratorinis darbas*/
 
+/*sutvarkome paslaugu skilti*/
+/* PASLAUGŲ SEKCIJA – kad viskas būtų matoma ir tvarkingai išdėstyta */
+#services .inner {
+  display: flex;
+  flex-direction: column;   /* viskas viena po kito žemyn */
+  gap: 1.5rem;              /* tarpai tarp blokų */
+  margin-top: 1.5rem;       /* kad media nebūtų prilipę prie viršaus */
+}
+
+/* Vidiniai <section> Paslaugų sekcijoje – nuimam bendrą šešėlį / radius */
+#services .inner > section {
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+}
+/* Kad medijos elementai būtų pilnai matomi ir prisitaikytų prie pločio */
+#services video,
+#services iframe,
+#services audio {
+  display: block;
+  width: 100%;        /* prisitaiko prie tėvinio bloko */
+  max-width: 480px;   /* kad nebūtų per platūs dideliuose ekranuose */
+  margin: 0 0 1rem 0;
+}
+
+
+/* Kontaktų formos skaičių laukams – matomas tekstas */
+.panel.color4-alt .fields input[type="number"] {
+  color: #222 !important;          /* tamsus tekstas */
+  background-color: #ffffff;       /* balta fone */
+}
+
+
+/* Kontaktų sekcija: leisk turiniui scrollintis, jei per aukštas */
+.panel.color4-alt {
+  overflow-y: auto;      /* vertikalus scroll viduje panelės */
+}
+/* Kad viršutiniai Kontaktų formos laukai nebūtų nupjauti nuo viršaus */
+.panel.color4-alt .span-3-25 form .fields {
+  margin-top: 4rem;
+}
+
+
+
+
+/* Kontaktų formos skaičių laukams – matomas tekstas */
+.panel.color4-alt .fields input[type="number"] {
+  color: #222 !important;      /* tamsus tekstas */
+  background-color: #ffffff;   /* balta fone */
+}
+
+/* Kontaktų sekcija – scroll jei per aukšta */
+.panel.color4-alt {
+  position: relative;
+  overflow-y: auto;
+}
+
+
+/* Kad viršutiniai Kontaktų formos laukai nebūtų nupjauti nuo viršaus */
+.panel.color4-alt .span-3-25 form .fields {
+  margin-top: 2rem;
+}
+
+
+
+
+/*4 užduotis – kontaktų formos duomenų apdorojimas*/
+/* Kontaktų formos rezultatų blokas (4 užduotis) */
+.form-output-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.95em;
+}
+
+.form-output-box p {
+  margin: 0.25rem 0;
+}
+
+.form-output-box a {
+  text-decoration: underline;
+}
+
+
+/* Kontaktų sekcijos stulpelius (forma + ikonos) lygiuojam nuo viršaus */
+.panel.color4-alt .inner.columns.divided {
+  align-items: flex-start !important;
+}
+
+/* Kad ikonų stulpelis nebūtų nustumtas žemyn */
+.panel.color4-alt .span-1-5 {
+  align-self: flex-start;
+}
+
+.panel.color4-alt .contact-icons {
+  margin-top: 0;
+}
+
+
+/*6 uzduotis*/
+.form-success-popup {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+
+  /* naujos spalvos */
+  background: rgba(15, 18, 40, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f5f5ff !important;
+
+  font-size: 0.95rem;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.35);
+
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+.form-success-popup.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.form-success-popup p {
+  margin: 0;
+  color: inherit;
+}
+
+
+/*papildoma uzduotis*/
+/* Klaidos stilius formos laukams */
+.panel.color4-alt .field input.has-error,
+.panel.color4-alt .field textarea.has-error {
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 0 1px rgba(255, 107, 107, 0.6);
+}
+
+/* Klaidos tekstas po lauku */
+.panel.color4-alt .field .error-text {
+  color: #ffb3b3;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* Submit mygtukas, kai forma dar neteisinga */
+#submit-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
