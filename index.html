@@ -203,37 +203,91 @@ Esu atkaklus, smalsus ir greitai prisitaikantis žmogus, visada siekiantis tapti
 
 
 
-						<!-- Panel -->
+					
+
 							<section class="panel color4-alt">
 								<div class="intro color4">
 									<h2 class="major">Kontaktai</h2>
 									<p>Jei turi idėjų projektams, ieškai motyvaus komandos nario ar nori pasiklausti apie mano darbus – parašyk man žinutę.
-Domiuosi MATLAB, Python, duomenų analize ir techniniais sprendimais, taip pat sporto ir treniruočių sekimo projektais.
-Atsakysiu į tavo laišką, kai tik galėsiu, ir, jei bus galimybė, mielai prisidėsiu prie bendrų idėjų įgyvendinimo.</p>
+								Domiuosi MATLAB, Python, duomenų analize ir techniniais sprendimais, taip pat sporto ir treniruočių sekimo projektais.
+								Atsakysiu į tavo laišką, kai tik galėsiu, ir, jei bus galimybė, mielai prisidėsiu prie bendrų idėjų įgyvendinimo.</p>
 								</div>
+
 								<div class="inner columns divided">
+									<!-- KAIRĖ PUSĖ – NAUJA FORMA -->
 									<div class="span-3-25">
-										<form method="post" action="#">
-											<div class="fields">
-												<div class="field half">
-													<label for="name">Vardas</label>
-													<input type="text" name="name" id="name" />
-												</div>
-												<div class="field half">
-													<label for="email">Paštas</label>
-													<input type="email" name="email" id="email" />
-												</div>
-												<div class="field">
-													<label for="message">Žinutė</label>
-													<textarea name="message" id="message" rows="4"></textarea>
-												</div>
-											</div>
-											<ul class="actions">
-												<li><input type="submit" value="Send Message" class="button primary" /></li>
-											</ul>
-										</form>
-									</div>
+
+									<form id="contact-form" method="post" action="#">
+										<div class="fields">
+
+										<!-- 1 eilutė: Vardas + Pavardė -->
+										<div class="field half">
+											<label for="first-name">Vardas</label>
+											<input type="text" name="first-name" id="first-name" />
+										</div>
+										<div class="field half">
+											<label for="last-name">Pavardė</label>
+											<input type="text" name="last-name" id="last-name" />
+										</div>
+
+										<!-- 2 eilutė: El. paštas + Telefonas -->
+										<div class="field half">
+											<label for="email">El. paštas</label>
+											<input type="email" name="email" id="email" />
+										</div>
+										<div class="field half">
+											<label for="phone">Telefono numeris</label>
+											<input
+												type="tel"
+												name="phone"
+												id="phone"
+												placeholder="+370 620 78374"
+												title="Įveskite telefono numerį formatu +370 6xx xxxx"
+											/>
+										</div>
+
+
+										<!-- 3 eilutė: Adresas -->
+										<div class="field">
+											<label for="address">Adresas</label>
+											<input type="text" name="address" id="address" />
+										</div>
+
+										<!-- 4 eilutė: 3 klausimai (skalė 1–10) -->
+										<div class="field">
+											<label for="q1">Kiek įvertintum savo programavimo žinias? (1–10)</label>
+											<input type="number" name="q1" id="q1" min="1" max="10" value="5" />
+										</div>
+
+										<div class="field">
+											<label for="q2">Kiek įvertintum darbo komandoje įgūdžius? (1–10)</label>
+											<input type="number" name="q2" id="q2" min="1" max="10" value="5" />
+										</div>
+
+										<div class="field">
+											<label for="q3">Kiek įvertintum motyvaciją mokytis naujų dalykų? (1–10)</label>
+											<input type="number" name="q3" id="q3" min="1" max="10" value="5" />
+										</div>
+
+
+										<!-- Papildomas žinutės laukas -->
+										<div class="field">
+											<label for="message">Žinutė</label>
+											<textarea name="message" id="message" rows="4"></textarea>
+										</div>
+
+										</div>
+
+										<ul class="actions">
+										<li><input type="submit" value="Siųsti" class="button primary" id="submit-btn"/></li>
+										</ul>
+									</form>	
+
+									<div id="form-output" class="form-output-box"></div>	
+									</div> 
+									<!-- DEŠINĖ PUSĖ – IKONOS (NELIEČIAM) -->
 									<div class="span-1-5">
+										
 										<ul class="contact-icons color1">
 											<li class="icon brands fa-twitter"><a href="#">@benas.kastenskas</a></li>
 											<li class="icon brands fa-facebook-f"><a href="#">facebook.com/b_kas</a></li>
@@ -242,8 +296,11 @@ Atsakysiu į tavo laišką, kai tik galėsiu, ir, jei bus galimybė, mielai pris
 											<li class="icon brands fa-medium-m"><a href="#">medium.com/b_kas</a></li>
 										</ul>
 									</div>
+
 								</div>
-							</section>
+
+		
+								</section>
 
 					
 
@@ -253,12 +310,18 @@ Atsakysiu į tavo laišką, kai tik galėsiu, ir, jei bus galimybė, mielai pris
 					</div>
 
 			</div>
+			<!-- Sėkmingo pateikimo pranešimas (6 užduotis) -->
+			<div id="form-success" class="form-success-popup">
+			<p>✔ Duomenys pateikti sėkmingai!</p>
+			</div>
 
 		<!-- Scripts -->	
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/custom.js"></script>
+
 
 
 	<!-- 10.2 laboratorinio. Šis kodas paslepia preloaderį, kai svetainė pilnai užsikrauna -->
