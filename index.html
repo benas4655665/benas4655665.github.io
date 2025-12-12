@@ -302,6 +302,56 @@ Esu atkaklus, smalsus ir greitai prisitaikantis žmogus, visada siekiantis tapti
 		
 								</section>
 
+
+								<!-- Mano žaidimo sekcija (12 LD) -->
+								<section class="panel color2-alt" id="game">
+									<div class="intro color2">
+										<h2 class="major">Mano žaidimas</h2>
+										<p>
+											Čia galėsi pažaisti atminties (Flip Card) žaidimą ir pasitikrinti, kaip greitai
+											randi vienodas korteles.
+										</p>
+									</div>
+
+									<div class="inner columns divided">
+
+										<!-- Kairė pusė – nustatymai ir statistika -->
+										<div class="span-2-5">
+											<h3>Nustatymai</h3>
+
+											<label for="game-difficulty">Sudėtingumas:</label>
+											<select id="game-difficulty">
+												<option value="easy">Lengvas (4×2)</option>
+												<option value="medium">Vidutinis (4×3)</option>
+												<option value="hard">Sunkus (4×4)</option>
+											</select>
+
+											<ul class="actions" style="margin-top: 1.5rem;">
+												<li><button id="game-start" class="button primary">Pradėti žaidimą</button></li>
+												<li><button id="game-reset" class="button" disabled>Perkrauti</button></li>
+											</ul>
+
+											<h3>Statistika</h3>
+											<ul class="game-stats">
+												<li>Ėjimai: <span id="stats-moves">0</span></li>
+												<li>Rastų porų sk.: <span id="stats-matches">0</span>/<span id="stats-total">0</span></li>
+												<li>Laikas: <span id="stats-time">0</span> s</li>
+												<li>Geriausias rezultatas: <span id="stats-best">–</span></li>
+											</ul>
+										</div>
+
+										<!-- Dešinė pusė – žaidimo laukas ir pranešimas -->
+										<div class="span-3-5">
+											<div id="game-board" class="game-board">
+												<!-- Kortelės bus sugeneruotos JavaScript -->
+											</div>
+
+											<div id="game-message" class="game-message" aria-live="polite"></div>
+										</div>
+
+									</div>
+								</section>
+
 					
 
 						<!-- Copyright -->
