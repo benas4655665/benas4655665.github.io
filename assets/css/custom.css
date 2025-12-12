@@ -1,3 +1,4 @@
+
 body {
     font-family: "Verdana", Arial, sans-serif;
 }
@@ -571,3 +572,70 @@ section {
   cursor: not-allowed;
 }
 
+
+
+
+
+
+/* 12 LD – atminties žaidimas */
+
+/* Žaidimo statistikos sąrašas (kairėje) */
+.game-stats {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+}
+
+.game-stats li {
+    margin: 0.25rem 0;
+}
+
+/* Žaidimo laukas – kortelių tinklelis */
+#game-board {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(110px, 1fr));
+    gap: 1.5rem;
+    justify-content: flex-start;
+}
+
+/* Viena kortelė – paprastas mygtukas su emoji */
+.game-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* kad emoji būtų DIDELI */
+    font-size: 3.5rem;   /* jei norėsi dar didesnių – pakeisk į 4rem ar 5rem */
+    line-height: 1;
+
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+
+    cursor: pointer;
+    aspect-ratio: 3 / 4;  /* gražus stačiakampis */
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Kai kortelė atversta */
+.game-card.flipped {
+    background: rgba(114, 137, 218, 0.9);
+}
+
+/* Kai pora surasta */
+.game-card.matched {
+    background: rgba(144, 238, 144, 0.9);
+    transform: scale(1.03);
+}
+.game-message {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 0.95rem;
+    display: block;      /* VISADA rodoma dėžutė */
+    min-height: 2.2rem;  /* kad vieta pranešimui būtų net ir tuščia */
+}
