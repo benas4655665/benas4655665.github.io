@@ -307,5 +307,288 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // pradinė mygtuko būsena
   updateSubmitState();
+
+
+
+
+
 });
 
+
+
+
+
+// 12 LD – atminties žaidimas (Flip Card)
+document.addEventListener('DOMContentLoaded', function () {
+    // ---- Elementai iš HTML ----
+    const board            = document.getElementById('game-board');
+    const startBtn         = document.getElementById('game-start');
+    const resetBtn         = document.getElementById('game-reset');
+    const difficultySelect = document.getElementById('game-difficulty');
+    const msgBox           = document.getElementById('game-message');
+
+    const movesEl   = document.getElementById('stats-moves');
+    const matchesEl = document.getElementById('stats-matches');
+    const totalEl   = document.getElementById('stats-total');
+    const timeEl    = document.getElementById('stats-time');
+    const bestEl    = document.getElementById('stats-best');
+
+    // Jei žaidimo sekcijos apskritai nėra (pvz., kitam puslapy) – nieko nedarom
+    if (!board || !startBtn) return;
+
+    // ---- Kortelių "duomenų rinkinys" (bent 6 elementai) ----
+    const cardSymbols = [
+        '🍎', '🍌', '🍇', '🍉', '🍒', '🍓',
+        '🥝', '🍍', '🥑', '🥕'
+    ];
+
+    // Žaidimo būsena
+    let cards      = [];
+    let firstCard  = null;
+    let secondCard = null;
+    let lockBoard  = false;
+
+    let moves      = 0;
+    let matches    = 0;
+    let totalPairs = 0;
+
+    let seconds = 0;
+    let timerId = null;
+
+    // ===== 4.1 – geriausi rezultatai pagal ėjimus (localStorage) =====
+    const BEST_MOVES_KEY = 'flip-game-best-moves-v1'; // raktas localStorage
+    // Objektas: { easy: 12, medium: 18, hard: 25, ... }
+    let bestMovesByDiff = {};
+
+    try {
+        const saved = localStorage.getItem(BEST_MOVES_KEY);
+        if (saved) {
+            bestMovesByDiff = JSON.parse(saved);
+        }
+    } catch (e) {
+        bestMovesByDiff = {};
+    }
+
+    // ---- Pagalbinės funkcijos ----
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function getPairsByDifficulty() {
+        const diff = difficultySelect.value; // "easy" / "medium" / "hard"
+        if (diff === 'easy')   return 4; // 4×2 -> 8 kortelių -> 4 poros
+        if (diff === 'medium') return 6; // 4×3 -> 12 kortelių -> 6 poros
+        return 8;                        // "hard" – 4×4 -> 16 kortelių -> 8 porų
+    }
+
+    function getCurrentDifficulty() {
+        // apsauga – jei kažkodėl nebūtų value, naudosim "easy"
+        return difficultySelect.value || 'easy';
+    }
+
+    function updateBestDisplay() {
+        const diff = getCurrentDifficulty();
+        const best = bestMovesByDiff[diff];
+
+        if (best != null) {
+            bestEl.textContent = best + ' ėjimai';
+        } else {
+            bestEl.textContent = '–';
+        }
+    }
+
+    function resetStats() {
+        moves      = 0;
+        matches    = 0;
+        totalPairs = getPairsByDifficulty();
+        seconds    = 0;
+
+        movesEl.textContent   = '0';
+        matchesEl.textContent = `0/${totalPairs}`;
+        totalEl.textContent   = String(totalPairs);
+        timeEl.textContent    = '0';
+
+        // Parodom geriausią rezultatą pasirinktai sudėtingumo reikšmei
+        updateBestDisplay();
+    }
+
+    function startTimer() {
+        stopTimer();
+        timerId = setInterval(() => {
+            seconds += 0.1;
+            timeEl.textContent = seconds.toFixed(1);
+        }, 100);
+    }
+
+    function stopTimer() {
+        if (timerId) {
+            clearInterval(timerId);
+            timerId = null;
+        }
+    }
+
+    function showMessage(text) {
+        msgBox.textContent = text;
+    }
+
+    function clearMessage() {
+        msgBox.textContent = '';
+    }
+
+    // ---- Lentos generavimas pagal pasirinktą sudėtingumą ----
+    function generateBoard() {
+        const pairs = getPairsByDifficulty();
+        totalPairs  = pairs;
+
+        // 1) atsitiktinai parenkam simbolius
+        const shuffledSymbols = shuffle([...cardSymbols]);
+        const usedSymbols     = shuffledSymbols.slice(0, pairs);
+
+        // 2) iš tų simbolių sukuriam poras (kiekvienas po 2)
+        const deck = [];
+        let idCounter = 0;
+        usedSymbols.forEach(symbol => {
+            deck.push({ id: idCounter++, symbol });
+            deck.push({ id: idCounter++, symbol });
+        });
+
+        // 3) sujaukiam
+        shuffle(deck);
+
+        // 4) sugeneruojam HTML
+        board.innerHTML = '';
+        deck.forEach(card => {
+            const btn = document.createElement('button');
+            btn.className = 'game-card';
+            btn.dataset.symbol = card.symbol;
+            btn.dataset.id = card.id;
+            btn.textContent = ''; // pradžioj tuščia pusė
+            btn.addEventListener('click', handleCardClick);
+            board.appendChild(btn);
+        });
+
+        // išsaugom būseną
+        cards = deck;
+
+        // statistika + būsena
+        firstCard  = null;
+        secondCard = null;
+        lockBoard  = false;
+        resetStats();
+        clearMessage();
+    }
+
+    // ---- Kortelės paspaudimas ----
+    function handleCardClick(event) {
+        const btn = event.currentTarget;
+
+        if (lockBoard) return;
+        if (btn.classList.contains('matched') || btn.classList.contains('flipped')) return;
+
+        // pirmą kartą paspaudus – startuojam laikmatį
+        if (!timerId) startTimer();
+
+        btn.classList.add('flipped');
+        btn.textContent = btn.dataset.symbol;
+
+        if (!firstCard) {
+            firstCard = btn;
+            return;
+        }
+
+        secondCard = btn;
+        moves++;
+        movesEl.textContent = String(moves);
+
+        checkForMatch();
+    }
+
+    function checkForMatch() {
+        if (!firstCard || !secondCard) return;
+
+        const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
+
+        if (isMatch) {
+            // paliekam atverstas
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+
+            matches++;
+            matchesEl.textContent = `${matches}/${totalPairs}`;
+
+            firstCard  = null;
+            secondCard = null;
+
+            if (matches === totalPairs) {
+                // laimėjom!
+                stopTimer();
+                showMessage('Sveikinu! Radai visas poras 🎉');
+
+                // --- 4.1: atnaujinam geriausią rezultatą pagal ėjimų skaičių ---
+                const diff        = getCurrentDifficulty();
+                const currentBest = bestMovesByDiff[diff];
+
+                if (currentBest == null || moves < currentBest) {
+                    bestMovesByDiff[diff] = moves;
+                    localStorage.setItem(
+                        BEST_MOVES_KEY,
+                        JSON.stringify(bestMovesByDiff)
+                    );
+                }
+
+                updateBestDisplay();
+
+                resetBtn.disabled = false;
+                startBtn.disabled = false;
+            }
+        } else {
+            // bloga pora – trumpai rodom ir užverčiam
+            lockBoard = true;
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                firstCard.textContent = '';
+                secondCard.textContent = '';
+                firstCard  = null;
+                secondCard = null;
+                lockBoard  = false;
+            }, 700);
+        }
+    }
+
+    // ---- Mygtukai ----
+    function startGame() {
+        startBtn.disabled = true;
+        resetBtn.disabled = false;
+        generateBoard();
+    }
+
+    function resetGame() {
+        stopTimer();
+        generateBoard();
+    }
+
+    startBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        startGame();
+    });
+
+    resetBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        resetGame();
+    });
+
+    // Kai pakeičiam sudėtingumo lygį – perkraunam lentą ir statistiką
+    difficultySelect.addEventListener('change', function () {
+        resetGame();
+    });
+
+    // iš pradžių leidžiam tik "Pradėti žaidimą" ir parodom best rezultatą, jei yra
+    resetBtn.disabled = true;
+    clearMessage();
+    updateBestDisplay();
+});
